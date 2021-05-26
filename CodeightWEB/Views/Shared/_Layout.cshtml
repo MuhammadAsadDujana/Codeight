@@ -1,0 +1,278 @@
+﻿
+
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Code 8</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/Content/theme/css/all.min.css">
+    <!-- Parsley style -->
+    <link href="~/Content/theme/css/parsley.css" rel="stylesheet" />
+
+    <!-- sweetalert style -->
+    <link href="~/Content/theme/css/sweetalert.css" rel="stylesheet" />
+
+    <link href="~/Content/theme/css/select2.min.css" rel="stylesheet" />
+
+    <link href="~/Content/theme/css/select2-bootstrap4.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/Content/theme/webfonts/fonts.css">
+
+
+    <link href="~/Content/theme/css/datatables.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/theme/css/adminlte.min.css">
+    <!-- Custom style -->
+    <link rel="stylesheet" href="~/Content/theme/css/main.css">
+
+    <link href="~/Content/theme/css/ngProgressBar.css" rel="stylesheet" />
+
+
+
+    <!-- REQUIRED SCRIPTS -->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Content/theme/js/datatables.min.js"></script>
+    <script src="~/Content/theme/js/sweetalert.min.js"></script>
+    <script src="~/Content/theme/js/parsley.min.js"></script>
+    <script src="~/Content/theme/js/data.js"></script>
+
+    <!-- AdminLTE App -->
+    <script src="~/Content/theme/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/Content/theme/js/adminlte.min.js"></script>
+
+    <script src="~/Content/theme/js/select2.full.min.js"></script>
+
+
+
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand main-navbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="toggleArrow" data-widget="pushmenu" href="/User/MainDashboard" role="button"><i class="fal fa-arrow-to-left"></i></a>
+                </li>
+            </ul>
+
+            @if (@ViewBag.Title != null)
+            {
+                if (@ViewBag.Title == "Edit User")
+                {
+                    <h1 class="main_heading">App Users <span class="mx-3"><i class="far fa-angle-right"></i></span> <span class="sub-heading">@ViewBag.Title</span></h1>
+                }
+                else if (@ViewBag.Title == "Edit List")
+                {
+                    @*<h1 class="main_heading">List Management <span class="mx-3"><i class="far fa-angle-right"></i></span> <span class="sub-heading">Edit</span></h1>*@
+                    <h1 class="main_heading">List Management</h1>
+                }
+                else if (@ViewBag.Title == "Add List")
+                {
+                    @*<h1 class="main_heading">List Management <span class="mx-3"><i class="far fa-angle-right"></i></span> <span class="sub-heading">Add</span></h1>*@
+                    <h1 class="main_heading">List Management</h1>
+                }
+                else
+                {
+                    <h1 class="main_heading">@ViewBag.Title</h1>
+                }
+            }
+
+
+
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto top_userDetail">
+
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown settings_list">
+                    <a class="nav-link setting_link" data-toggle="dropdown" href="#">
+                        <i class="fal fa-cog"></i>
+                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Admin"))
+                            {
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-divider"></div>
+                        <a id="changePassword" href="~/User/ChangePassword" class="dropdown-item">
+                            <i class="fal fa-unlock-alt"></i> Change Password
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javascript:dataAccess.loginService.logout()" class="dropdown-item">
+                            <i class="fal fa-power-off"></i> Logout
+                        </a>
+                    </div>
+                            }
+
+                        }
+
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar elevation-4">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link">
+                <img src="~/Content/theme/img/logo.png" alt="AdminLTE Logo" class="brand-image">
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-4">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                        <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+                            if (User.IsInRole("Admin"))
+                            {
+
+                                <li class="nav-item has-treeview">
+                                    <a href="~/User/UserManagement" class="nav-link drop-link">
+                                        <p>
+                                            User Management
+                                            @*<i class="right fas fa-angle-left"></i>*@
+                                        </p>
+                                    </a>
+
+                                    @*<a href="#" class="nav-link drop-link">
+                        <p>
+                            User Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="~/User/ManagemenListAndsearch" class="nav-link">
+                                <p>List and Search</p>
+                            </a>
+                        </li>
+                    </ul>*@
+                                </li>
+                                <li class="nav-item has-treeview">
+                                    <a href="~/Session/VideoManagement" class="nav-link drop-link">
+                                        <p>
+                                            Video Management
+                                            @*<i class="right fas fa-angle-left"></i>*@
+                                        </p>
+                                    </a>
+
+                                    @*<a href="#" class="nav-link drop-link">
+                        <p>
+                            Physician Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="~/Physician/physiciansManagementList" class="nav-link">
+                                <p>List and Search</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/Physician/addNewPhysician" class="nav-link">
+                                <p>Add New Physician</p>
+                            </a>
+                        </li>
+                    </ul>*@
+                                </li>
+                                <!--<li class="nav-item has-treeview">
+            <a href="~/ListManagement/PhysicianListManagement" class="nav-link drop-link">
+                <p>
+                    List Management-->
+                                @*<i class="right fas fa-angle-left"></i>*@
+                                <!--</p>
+                </a>
+
+            </li>-->
+
+                                <li class="nav-item">
+                                    <a href="~/Session/ManageRadius" class="nav-link">
+                                        <p>
+                                            Manage Radius
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="~/Notification/PushNotifcation" class="nav-link">
+                                        <p>
+                                            Push Notification
+                                        </p>
+                                    </a>
+                                </li>
+
+                            }
+                        }
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Main content -->
+            <div class="content pt-5">
+                <div class="container-fluid">
+                    @RenderBody()
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- Default to the left -->
+            Copyright 2021 Code8. All Rights Reserved
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    @*<script src="~/Scripts/jquery-3.5.1.js"></script>*@
+  
+
+
+
+
+    @*<link rel="manifest" href="manifest.json">
+
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-messaging.js"></script>*@
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+</body>
+</html>
+
+
+
+
+
+
+

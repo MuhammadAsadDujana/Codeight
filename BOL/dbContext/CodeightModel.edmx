@@ -1,0 +1,1034 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CodEightModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Cities">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="is_launched" Type="int" />
+          <Property Name="drivers_count" Type="int" />
+          <Property Name="toll_charges" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Countries">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_ForgotPasswordLinks">
+          <Key>
+            <PropertyRef Name="ForgotPasswordLinkId" />
+          </Key>
+          <Property Name="ForgotPasswordLinkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_LiveBroadCast">
+          <Key>
+            <PropertyRef Name="BroadCastId" />
+          </Key>
+          <Property Name="BroadCastId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VideoId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="BroadCastLimit" Type="int" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="100" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="tinyint" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Logs">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Operation" Type="nvarchar" MaxLength="50" />
+          <Property Name="ErrorDescription" Type="nvarchar(max)" />
+          <Property Name="EventType" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreadedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_ManageRadius">
+          <Key>
+            <PropertyRef Name="RadiusId" />
+          </Key>
+          <Property Name="RadiusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RadiusValue" Type="float" />
+          <Property Name="IsSelected" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Markers">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Distance" Type="float" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_NearByUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PublisherSessionId" Type="nvarchar" MaxLength="200" />
+          <Property Name="PublisherToken" Type="nvarchar" MaxLength="500" />
+          <Property Name="SubscriberToken" Type="nvarchar" MaxLength="500" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
+          <Property Name="ArchiveId" Type="nvarchar" MaxLength="100" />
+          <Property Name="roomJoinedUserId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ExpireDate" Type="datetime" />
+          <Property Name="roomCreatedUserId" Type="int" />
+          <Property Name="VideoURL" Type="nvarchar(max)" />
+          <Property Name="VideoCategory" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tbl_Notifications">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="BroadCastId" Type="int" />
+          <Property Name="MessageText" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Room">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionId" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Token" Type="nvarchar(max)" />
+          <Property Name="VideoCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="Latitude" Type="varchar" MaxLength="20" />
+          <Property Name="longitude" Type="varchar" MaxLength="20" />
+          <Property Name="Role" Type="varchar" MaxLength="20" />
+          <Property Name="TokenIssueDate" Type="datetime" />
+          <Property Name="TokenExpiryDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_States">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserType" Type="int" />
+          <Property Name="UserStatus" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccessToken" Type="nvarchar(max)" />
+          <Property Name="TokenIssueDate" Type="datetime" />
+          <Property Name="TokenExpiryDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="30" />
+          <Property Name="ProfileImage" Type="nvarchar" MaxLength="500" />
+          <Property Name="FCMDeviceToken" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_VideoCategories">
+          <Key>
+            <PropertyRef Name="VideoId" />
+          </Key>
+          <Property Name="VideoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="tinyint" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CategoryColor" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_tbl_Cities_tbl_States">
+          <End Role="tbl_States" Type="Self.tbl_States" Multiplicity="0..1" />
+          <End Role="tbl_Cities" Type="Self.tbl_Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_States">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="tbl_Cities">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ForgotPasswordLinks_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_ForgotPasswordLinks" Type="Self.tbl_ForgotPasswordLinks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_ForgotPasswordLinks">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_LiveBroadCast_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_LiveBroadCast" Type="Self.tbl_LiveBroadCast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_LiveBroadCast">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_LiveBroadCast_tbl_VideoCategories">
+          <End Role="tbl_VideoCategories" Type="Self.tbl_VideoCategories" Multiplicity="0..1" />
+          <End Role="tbl_LiveBroadCast" Type="Self.tbl_LiveBroadCast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_VideoCategories">
+              <PropertyRef Name="VideoId" />
+            </Principal>
+            <Dependent Role="tbl_LiveBroadCast">
+              <PropertyRef Name="VideoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Logs_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_Logs" Type="Self.tbl_Logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Logs">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Markers_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_Markers" Type="Self.tbl_Markers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Markers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Notifications_tbl_LiveBroadCast">
+          <End Role="tbl_LiveBroadCast" Type="Self.tbl_LiveBroadCast" Multiplicity="0..1" />
+          <End Role="tbl_Notifications" Type="Self.tbl_Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_LiveBroadCast">
+              <PropertyRef Name="BroadCastId" />
+            </Principal>
+            <Dependent Role="tbl_Notifications">
+              <PropertyRef Name="BroadCastId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Notifications_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_Notifications" Type="Self.tbl_Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Notifications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Room_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_Room" Type="Self.tbl_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Room">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_States_tbl_Countries">
+          <End Role="tbl_Countries" Type="Self.tbl_Countries" Multiplicity="0..1" />
+          <End Role="tbl_States" Type="Self.tbl_States" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Countries">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="tbl_States">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Users_tbl_Cities">
+          <End Role="tbl_Cities" Type="Self.tbl_Cities" Multiplicity="0..1" />
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="tbl_Users">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CodEightModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Cities" EntityType="Self.tbl_Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Countries" EntityType="Self.tbl_Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ForgotPasswordLinks" EntityType="Self.tbl_ForgotPasswordLinks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_LiveBroadCast" EntityType="Self.tbl_LiveBroadCast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Logs" EntityType="Self.tbl_Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ManageRadius" EntityType="Self.tbl_ManageRadius" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Markers" EntityType="Self.tbl_Markers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_NearByUser" EntityType="Self.tbl_NearByUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Notifications" EntityType="Self.tbl_Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Room" EntityType="Self.tbl_Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_States" EntityType="Self.tbl_States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Users" EntityType="Self.tbl_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_VideoCategories" EntityType="Self.tbl_VideoCategories" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_Cities_tbl_States" Association="Self.FK_tbl_Cities_tbl_States">
+            <End Role="tbl_States" EntitySet="tbl_States" />
+            <End Role="tbl_Cities" EntitySet="tbl_Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ForgotPasswordLinks_tbl_Users" Association="Self.FK_tbl_ForgotPasswordLinks_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_ForgotPasswordLinks" EntitySet="tbl_ForgotPasswordLinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_LiveBroadCast_tbl_Users" Association="Self.FK_tbl_LiveBroadCast_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_LiveBroadCast" EntitySet="tbl_LiveBroadCast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_LiveBroadCast_tbl_VideoCategories" Association="Self.FK_tbl_LiveBroadCast_tbl_VideoCategories">
+            <End Role="tbl_VideoCategories" EntitySet="tbl_VideoCategories" />
+            <End Role="tbl_LiveBroadCast" EntitySet="tbl_LiveBroadCast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Logs_tbl_Users" Association="Self.FK_tbl_Logs_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_Logs" EntitySet="tbl_Logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Markers_tbl_Users" Association="Self.FK_tbl_Markers_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_Markers" EntitySet="tbl_Markers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Notifications_tbl_LiveBroadCast" Association="Self.FK_tbl_Notifications_tbl_LiveBroadCast">
+            <End Role="tbl_LiveBroadCast" EntitySet="tbl_LiveBroadCast" />
+            <End Role="tbl_Notifications" EntitySet="tbl_Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Notifications_tbl_Users" Association="Self.FK_tbl_Notifications_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_Notifications" EntitySet="tbl_Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Room_tbl_Users" Association="Self.FK_tbl_Room_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_Room" EntitySet="tbl_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_States_tbl_Countries" Association="Self.FK_tbl_States_tbl_Countries">
+            <End Role="tbl_Countries" EntitySet="tbl_Countries" />
+            <End Role="tbl_States" EntitySet="tbl_States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Users_tbl_Cities" Association="Self.FK_tbl_Users_tbl_Cities">
+            <End Role="tbl_Cities" EntitySet="tbl_Cities" />
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CodEightModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_ForgotPasswordLinks">
+          <Key>
+            <PropertyRef Name="ForgotPasswordLinkId" />
+          </Key>
+          <Property Name="ForgotPasswordLinkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tbl_Users" Relationship="Self.FK_tbl_ForgotPasswordLinks_tbl_Users" FromRole="tbl_ForgotPasswordLinks" ToRole="tbl_Users" />
+        </EntityType>
+        <EntityType Name="tbl_LiveBroadCast">
+          <Key>
+            <PropertyRef Name="BroadCastId" />
+          </Key>
+          <Property Name="BroadCastId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VideoId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="BroadCastLimit" Type="Int32" />
+          <Property Name="Latitude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tbl_Users" Relationship="Self.FK_tbl_LiveBroadCast_tbl_Users" FromRole="tbl_LiveBroadCast" ToRole="tbl_Users" />
+          <NavigationProperty Name="tbl_VideoCategories" Relationship="Self.FK_tbl_LiveBroadCast_tbl_VideoCategories" FromRole="tbl_LiveBroadCast" ToRole="tbl_VideoCategories" />
+          <NavigationProperty Name="tbl_Notifications" Relationship="Self.FK_tbl_Notifications_tbl_LiveBroadCast" FromRole="tbl_LiveBroadCast" ToRole="tbl_Notifications" />
+        </EntityType>
+        <EntityType Name="tbl_Logs">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Operation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EventType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Users" Relationship="Self.FK_tbl_Logs_tbl_Users" FromRole="tbl_Logs" ToRole="tbl_Users" />
+        </EntityType>
+        <EntityType Name="tbl_Notifications">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="BroadCastId" Type="Int32" />
+          <Property Name="MessageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tbl_LiveBroadCast" Relationship="Self.FK_tbl_Notifications_tbl_LiveBroadCast" FromRole="tbl_Notifications" ToRole="tbl_LiveBroadCast" />
+          <NavigationProperty Name="tbl_Users" Relationship="Self.FK_tbl_Notifications_tbl_Users" FromRole="tbl_Notifications" ToRole="tbl_Users" />
+        </EntityType>
+        <EntityType Name="tbl_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="Int32" />
+          <Property Name="UserStatus" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccessToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TokenIssueDate" Type="DateTime" Precision="3" />
+          <Property Name="TokenExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tbl_ForgotPasswordLinks" Relationship="Self.FK_tbl_ForgotPasswordLinks_tbl_Users" FromRole="tbl_Users" ToRole="tbl_ForgotPasswordLinks" />
+          <NavigationProperty Name="tbl_LiveBroadCast" Relationship="Self.FK_tbl_LiveBroadCast_tbl_Users" FromRole="tbl_Users" ToRole="tbl_LiveBroadCast" />
+          <NavigationProperty Name="tbl_Logs" Relationship="Self.FK_tbl_Logs_tbl_Users" FromRole="tbl_Users" ToRole="tbl_Logs" />
+          <NavigationProperty Name="tbl_Notifications" Relationship="Self.FK_tbl_Notifications_tbl_Users" FromRole="tbl_Users" ToRole="tbl_Notifications" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="ZipCode" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Cities" Relationship="CodEightModel.FK_tbl_Users_tbl_Cities" FromRole="tbl_Users" ToRole="tbl_Cities" />
+          <Property Name="ProfileImage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Room" Relationship="CodEightModel.FK_tbl_Room_tbl_Users" FromRole="tbl_Users" ToRole="tbl_Room" />
+          <Property Name="FCMDeviceToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Markers" Relationship="CodEightModel.FK_tbl_Markers_tbl_Users" FromRole="tbl_Users" ToRole="tbl_Markers" />
+        </EntityType>
+        <EntityType Name="tbl_VideoCategories">
+          <Key>
+            <PropertyRef Name="VideoId" />
+          </Key>
+          <Property Name="VideoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tbl_LiveBroadCast" Relationship="Self.FK_tbl_LiveBroadCast_tbl_VideoCategories" FromRole="tbl_VideoCategories" ToRole="tbl_LiveBroadCast" />
+          <Property Name="CategoryColor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tbl_ForgotPasswordLinks_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_ForgotPasswordLinks" Type="Self.tbl_ForgotPasswordLinks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_ForgotPasswordLinks">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_LiveBroadCast_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_LiveBroadCast" Type="Self.tbl_LiveBroadCast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_LiveBroadCast">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_LiveBroadCast_tbl_VideoCategories">
+          <End Role="tbl_VideoCategories" Type="Self.tbl_VideoCategories" Multiplicity="0..1" />
+          <End Role="tbl_LiveBroadCast" Type="Self.tbl_LiveBroadCast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_VideoCategories">
+              <PropertyRef Name="VideoId" />
+            </Principal>
+            <Dependent Role="tbl_LiveBroadCast">
+              <PropertyRef Name="VideoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Notifications_tbl_LiveBroadCast">
+          <End Role="tbl_LiveBroadCast" Type="Self.tbl_LiveBroadCast" Multiplicity="0..1" />
+          <End Role="tbl_Notifications" Type="Self.tbl_Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_LiveBroadCast">
+              <PropertyRef Name="BroadCastId" />
+            </Principal>
+            <Dependent Role="tbl_Notifications">
+              <PropertyRef Name="BroadCastId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Logs_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_Logs" Type="Self.tbl_Logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Logs">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Notifications_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_Notifications" Type="Self.tbl_Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Notifications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CodEightEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tbl_ForgotPasswordLinks" EntityType="Self.tbl_ForgotPasswordLinks" />
+          <EntitySet Name="tbl_LiveBroadCast" EntityType="Self.tbl_LiveBroadCast" />
+          <EntitySet Name="tbl_Logs" EntityType="Self.tbl_Logs" />
+          <EntitySet Name="tbl_Notifications" EntityType="Self.tbl_Notifications" />
+          <EntitySet Name="tbl_Users" EntityType="Self.tbl_Users" />
+          <EntitySet Name="tbl_VideoCategories" EntityType="Self.tbl_VideoCategories" />
+          <AssociationSet Name="FK_tbl_ForgotPasswordLinks_tbl_Users" Association="Self.FK_tbl_ForgotPasswordLinks_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_ForgotPasswordLinks" EntitySet="tbl_ForgotPasswordLinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_LiveBroadCast_tbl_Users" Association="Self.FK_tbl_LiveBroadCast_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_LiveBroadCast" EntitySet="tbl_LiveBroadCast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_LiveBroadCast_tbl_VideoCategories" Association="Self.FK_tbl_LiveBroadCast_tbl_VideoCategories">
+            <End Role="tbl_VideoCategories" EntitySet="tbl_VideoCategories" />
+            <End Role="tbl_LiveBroadCast" EntitySet="tbl_LiveBroadCast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Notifications_tbl_LiveBroadCast" Association="Self.FK_tbl_Notifications_tbl_LiveBroadCast">
+            <End Role="tbl_LiveBroadCast" EntitySet="tbl_LiveBroadCast" />
+            <End Role="tbl_Notifications" EntitySet="tbl_Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Logs_tbl_Users" Association="Self.FK_tbl_Logs_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_Logs" EntitySet="tbl_Logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Notifications_tbl_Users" Association="Self.FK_tbl_Notifications_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_Notifications" EntitySet="tbl_Notifications" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Countries" EntityType="CodEightModel.tbl_Countries" />
+          <EntitySet Name="tbl_Cities" EntityType="CodEightModel.tbl_Cities" />
+          <EntitySet Name="tbl_States" EntityType="CodEightModel.tbl_States" />
+          <AssociationSet Name="FK_tbl_Cities_tbl_States" Association="CodEightModel.FK_tbl_Cities_tbl_States">
+            <End Role="tbl_States" EntitySet="tbl_States" />
+            <End Role="tbl_Cities" EntitySet="tbl_Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_States_tbl_Countries" Association="CodEightModel.FK_tbl_States_tbl_Countries">
+            <End Role="tbl_Countries" EntitySet="tbl_Countries" />
+            <End Role="tbl_States" EntitySet="tbl_States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Users_tbl_Cities" Association="CodEightModel.FK_tbl_Users_tbl_Cities">
+            <End Role="tbl_Cities" EntitySet="tbl_Cities" />
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Room" EntityType="CodEightModel.tbl_Room" />
+          <AssociationSet Name="FK_tbl_Room_tbl_Users" Association="CodEightModel.FK_tbl_Room_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_Room" EntitySet="tbl_Room" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Markers" EntityType="CodEightModel.tbl_Markers" />
+          <AssociationSet Name="FK_tbl_Markers_tbl_Users" Association="CodEightModel.FK_tbl_Markers_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_Markers" EntitySet="tbl_Markers" />
+          </AssociationSet>
+          <EntitySet Name="tbl_NearByUser" EntityType="CodEightModel.tbl_NearByUser" />
+          <EntitySet Name="tbl_ManageRadius" EntityType="CodEightModel.tbl_ManageRadius" />
+        </EntityContainer>
+        <EntityType Name="tbl_Countries">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tbl_States" Relationship="CodEightModel.FK_tbl_States_tbl_Countries" FromRole="tbl_Countries" ToRole="tbl_States" />
+        </EntityType>
+        <EntityType Name="tbl_Cities">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="is_launched" Type="Int32" />
+          <Property Name="drivers_count" Type="Int32" />
+          <Property Name="toll_charges" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tbl_States" Relationship="CodEightModel.FK_tbl_Cities_tbl_States" FromRole="tbl_Cities" ToRole="tbl_States" />
+          <NavigationProperty Name="tbl_Users" Relationship="CodEightModel.FK_tbl_Users_tbl_Cities" FromRole="tbl_Cities" ToRole="tbl_Users" />
+        </EntityType>
+        <EntityType Name="tbl_States">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tbl_Cities" Relationship="CodEightModel.FK_tbl_Cities_tbl_States" FromRole="tbl_States" ToRole="tbl_Cities" />
+          <NavigationProperty Name="tbl_Countries" Relationship="CodEightModel.FK_tbl_States_tbl_Countries" FromRole="tbl_States" ToRole="tbl_Countries" />
+        </EntityType>
+        <Association Name="FK_tbl_Cities_tbl_States">
+          <End Type="CodEightModel.tbl_States" Role="tbl_States" Multiplicity="0..1" />
+          <End Type="CodEightModel.tbl_Cities" Role="tbl_Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_States">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="tbl_Cities">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_States_tbl_Countries">
+          <End Type="CodEightModel.tbl_Countries" Role="tbl_Countries" Multiplicity="0..1" />
+          <End Type="CodEightModel.tbl_States" Role="tbl_States" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Countries">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="tbl_States">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Users_tbl_Cities">
+          <End Type="CodEightModel.tbl_Cities" Role="tbl_Cities" Multiplicity="0..1" />
+          <End Type="CodEightModel.tbl_Users" Role="tbl_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="tbl_Users">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_Room">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VideoCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="longitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TokenIssueDate" Type="DateTime" Precision="3" />
+          <Property Name="TokenExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="tbl_Users" Relationship="CodEightModel.FK_tbl_Room_tbl_Users" FromRole="tbl_Room" ToRole="tbl_Users" />
+        </EntityType>
+        <Association Name="FK_tbl_Room_tbl_Users">
+          <End Type="CodEightModel.tbl_Users" Role="tbl_Users" Multiplicity="0..1" />
+          <End Type="CodEightModel.tbl_Room" Role="tbl_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Room">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_Markers">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Distance" Type="Double" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="tbl_Users" Relationship="CodEightModel.FK_tbl_Markers_tbl_Users" FromRole="tbl_Markers" ToRole="tbl_Users" />
+        </EntityType>
+        <Association Name="FK_tbl_Markers_tbl_Users">
+          <End Type="CodEightModel.tbl_Users" Role="tbl_Users" Multiplicity="0..1" />
+          <End Type="CodEightModel.tbl_Markers" Role="tbl_Markers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Markers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_NearByUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PublisherSessionId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PublisherToken" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SubscriberToken" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+          <Property Name="ArchiveId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="roomJoinedUserId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ExpireDate" Type="DateTime" Precision="3" />
+          <Property Name="roomCreatedUserId" Type="Int32" />
+          <Property Name="VideoURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VideoCategory" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_ManageRadius">
+          <Key>
+            <PropertyRef Name="RadiusId" />
+          </Key>
+          <Property Name="RadiusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RadiusValue" Type="Double" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CodEightModelStoreContainer" CdmEntityContainer="CodEightEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CodEightModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ForgotPasswordLinks">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_ForgotPasswordLinks">
+              <MappingFragment StoreEntitySet="tbl_ForgotPasswordLinks">
+                <ScalarProperty Name="ForgotPasswordLinkId" ColumnName="ForgotPasswordLinkId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_LiveBroadCast">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_LiveBroadCast">
+              <MappingFragment StoreEntitySet="tbl_LiveBroadCast">
+                <ScalarProperty Name="BroadCastId" ColumnName="BroadCastId" />
+                <ScalarProperty Name="VideoId" ColumnName="VideoId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BroadCastLimit" ColumnName="BroadCastLimit" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Logs">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_Logs">
+              <MappingFragment StoreEntitySet="tbl_Logs">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="ErrorDescription" ColumnName="ErrorDescription" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreadedBy" ColumnName="CreadedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Notifications">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_Notifications">
+              <MappingFragment StoreEntitySet="tbl_Notifications">
+                <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BroadCastId" ColumnName="BroadCastId" />
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Users">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_Users">
+              <MappingFragment StoreEntitySet="tbl_Users">
+                <ScalarProperty Name="FCMDeviceToken" ColumnName="FCMDeviceToken" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+                <ScalarProperty Name="TokenIssueDate" ColumnName="TokenIssueDate" />
+                <ScalarProperty Name="TokenExpiryDate" ColumnName="TokenExpiryDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_VideoCategories">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_VideoCategories">
+              <MappingFragment StoreEntitySet="tbl_VideoCategories">
+                <ScalarProperty Name="CategoryColor" ColumnName="CategoryColor" />
+                <ScalarProperty Name="VideoId" ColumnName="VideoId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Countries">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_Countries">
+              <MappingFragment StoreEntitySet="tbl_Countries">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cities">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_Cities">
+              <MappingFragment StoreEntitySet="tbl_Cities">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="toll_charges" ColumnName="toll_charges" />
+                <ScalarProperty Name="drivers_count" ColumnName="drivers_count" />
+                <ScalarProperty Name="is_launched" ColumnName="is_launched" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_States">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_States">
+              <MappingFragment StoreEntitySet="tbl_States">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Room">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_Room">
+              <MappingFragment StoreEntitySet="tbl_Room">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TokenExpiryDate" ColumnName="TokenExpiryDate" />
+                <ScalarProperty Name="TokenIssueDate" ColumnName="TokenIssueDate" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="VideoCategory" ColumnName="VideoCategory" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Markers">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_Markers">
+              <MappingFragment StoreEntitySet="tbl_Markers">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_NearByUser">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_NearByUser">
+              <MappingFragment StoreEntitySet="tbl_NearByUser">
+                <ScalarProperty Name="VideoCategory" ColumnName="VideoCategory" />
+                <ScalarProperty Name="VideoURL" ColumnName="VideoURL" />
+                <ScalarProperty Name="roomCreatedUserId" ColumnName="roomCreatedUserId" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="roomJoinedUserId" ColumnName="roomJoinedUserId" />
+                <ScalarProperty Name="ArchiveId" ColumnName="ArchiveId" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="SubscriberToken" ColumnName="SubscriberToken" />
+                <ScalarProperty Name="PublisherToken" ColumnName="PublisherToken" />
+                <ScalarProperty Name="PublisherSessionId" ColumnName="PublisherSessionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ManageRadius">
+            <EntityTypeMapping TypeName="CodEightModel.tbl_ManageRadius">
+              <MappingFragment StoreEntitySet="tbl_ManageRadius">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="RadiusValue" ColumnName="RadiusValue" />
+                <ScalarProperty Name="RadiusId" ColumnName="RadiusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

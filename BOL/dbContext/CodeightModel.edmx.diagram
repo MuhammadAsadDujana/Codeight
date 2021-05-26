@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="64819d682ddb49e8852b1d2a41431ab1" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="CodEightModel.sysdiagram" Width="1.5" PointX="7.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_ForgotPasswordLinks" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_LiveBroadCast" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_Logs" Width="1.5" PointX="3.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_Notifications" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_Users" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_VideoCategories" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="CodEightModel.FK_tbl_ForgotPasswordLinks_tbl_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CodEightModel.FK_tbl_LiveBroadCast_tbl_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CodEightModel.FK_tbl_LiveBroadCast_tbl_VideoCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="CodEightModel.FK_tbl_Notifications_tbl_LiveBroadCast" ManuallyRouted="false" />
+        <AssociationConnector Association="CodEightModel.FK_tbl_Logs_tbl_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CodEightModel.FK_tbl_Notifications_tbl_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_Countries" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_Cities" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_States" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="CodEightModel.FK_tbl_Cities_tbl_States" />
+        <AssociationConnector Association="CodEightModel.FK_tbl_States_tbl_Countries" />
+        <AssociationConnector Association="CodEightModel.FK_tbl_Users_tbl_Cities" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_Room" Width="1.5" PointX="8.375" PointY="8.75" />
+        <AssociationConnector Association="CodEightModel.FK_tbl_Room_tbl_Users" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_Markers" Width="1.5" PointX="9.375" PointY="0.75" />
+        <AssociationConnector Association="CodEightModel.FK_tbl_Markers_tbl_Users" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_NearByUser" Width="1.5" PointX="10.375" PointY="4.75" />
+        <EntityTypeShape EntityType="CodEightModel.tbl_ManageRadius" Width="1.5" PointX="10.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

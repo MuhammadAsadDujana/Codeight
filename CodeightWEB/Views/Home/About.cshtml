@@ -1,0 +1,207 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+@*<link href="css/app.css" rel="stylesheet" type="text/css">*@
+
+<link href="~/Content/theme/css/OTapp.css" rel="stylesheet" />
+<script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<input id="txtsessionid" type="text" class="form-control password" name="sessionid" />
+
+<input id="txttoken" type="text" class="form-control password" name="token" />
+
+<button id="btnSignIn" type="button" class="btn full-btn text-uppercase">Enter</button>>
+
+<button id="btnStop" type="button" class="btn full-btn text-uppercase">Stop Video</button>>
+
+<br />
+<br />
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+<div id="videos">
+    <div id="subscriber"></div>
+    <div id="publisher"></div>
+</div>
+
+@*<script src="~/Content/theme/js/OTapp.js"></script>*@
+@*<script type="text/javascript" src="js/app.js"></script>*@
+
+<script>
+
+
+
+
+    $('#btnSignIn').click(function (e) {
+
+
+        var apiKey = "47032654";
+        var sessionId = $('#txtsessionid').val();
+        var token = token = $('#txttoken').val();
+
+
+        debugger;
+        alert(1);
+
+
+        // Handling all of our errors here by alerting them
+        function handleError(error) {
+            if (error) {
+                alert(error.message);
+            }
+        }
+
+        // (optional) add server code here
+        initializeSession();
+
+        function initializeSession() {
+
+            debugger;
+            alert(2);
+
+            var session = OT.initSession(apiKey, sessionId);
+
+            // Subscribe to a newly created stream
+            session.on('streamCreated', function (event) {
+                //event.connection.connectionId;
+                session.subscribe(event.stream, 'subscriber', {
+                    insertMode: 'append',
+                    width: '100%',
+                    height: '100%',
+                }, handleError);
+            });
+
+            // Create a publisher
+            var publisher = OT.initPublisher('publisher', {
+                insertMode: 'append',
+                width: '100%',
+                height: '100%'
+            }, handleError);
+
+            // Connect to the session
+            session.connect(token, function (error) {
+
+                debugger;
+                alert(3);
+                // If the connection is successful, initialize a publisher and publish to the session
+                if (error) {
+                    handleError(error);
+                } else {
+                    session.publish(publisher, handleError);
+                }
+            });
+        }
+
+
+
+
+
+
+        //var apiKey = "47032654";
+        //var baseUrl = "https://localhost:44397/"
+        ////var sessionId = $('#txtsessionid').val();
+        ////var token = $('#txttoken').val();
+
+        //var data = {
+
+        //    sessionId = $('#txtsessionid').val(),
+        //    token = $('#txttoken').val()
+        //};
+
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: baseUrl + "Session/CreateSession",
+        //    data: JSON.stringify(data),
+        //    contentType: "application/json; charset=utf-8",
+        //    dataType: "json",
+        //    success: function (response) {
+
+        //        console.log(response);
+
+
+        //    },
+        //    failure: function (response) {
+        //        alert(response.responseText);
+        //        alert("Failure");
+        //    },
+        //    error: function (response) {
+        //        alert(response);
+        //        alert("Error");
+        //    }
+        //});
+
+
+    });
+
+
+
+
+    $('#btnStop').click(function (e) {
+        debugger;
+
+        var apiKey = "47032654";
+        var sessionId = $('#txtsessionid').val();
+        var token = token = $('#txttoken').val();
+
+        var session = OT.initSession(apiKey, sessionId);
+
+        //function disconnect() {
+        session.disconnect();
+        //}
+
+        //   var data = {
+        //    sessionId = $('#txtsessionid').val(),
+        //    token = $('#connectionid').val()
+        //};
+
+        //  $.ajax({
+        //    type: "Post",
+        //      url: "/Home/StopVideo",
+        //      data: { sessionId: $("#txtsessionid").val(), connectionId: $("#connectionid").val() },
+        // //   contentType: "application/json; charset=utf-8",
+        //    dataType: "json",
+        //    success: function (response) {
+
+        //        console.log(response);
+
+
+        //    },
+        //    failure: function (response) {
+        //        alert(response.responseText);
+        //        alert("Failure");
+        //    },
+        //    error: function (response) {
+        //        alert(response);
+        //        alert("Error");
+        //    }
+        //});
+
+
+    });
+
+    // replace these values with those generated in your TokBox Account
+
+
+    //var sessionId = "1_MX40NzAzMjY1NH5-MTYxMzM4NzYwNDA2Mn5kUVdzQk83aHhTQktPS2ZGSHg3a0FBSDN-QX4";
+    //var token = "T1==cGFydG5lcl9pZD00NzAzMjY1NCZzaWc9ZDg4YzZlNTVkNWU4OWY0NjE0MGNmYmUwNWY4MzE3NmVhNWE3N2Q4ZTpzZXNzaW9uX2lkPTFfTVg0ME56QXpNalkxTkg1LU1UWXhNek00TnpZd05EQTJNbjVrVVZkelFrODNhSGhUUWt0UFMyWkdTSGczYTBGQlNETi1RWDQmY3JlYXRlX3RpbWU9MTYxMzM4NzYwNyZub25jZT02NjU0NjUmcm9sZT1QVUJMSVNIRVI=";
+
+
+
+
+
+
+</script>

@@ -1,0 +1,156 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>BCM</title>
+
+    <link rel="stylesheet" href="~/Content/theme/webfonts/fonts.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/Content/theme/css/all.min.css">
+
+    <!-- Parsley style -->
+    <link href="~/Content/theme/css/parsley.css" rel="stylesheet" />
+
+    <!-- sweetalert style -->
+    <link href="~/Content/theme/css/sweetalert.css" rel="stylesheet" />
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/theme/css/adminlte.min.css">
+    <!-- Custom style -->
+
+
+    <link href="~/Content/theme/css/ngProgressBar.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/theme/css/main.css">
+    @*<script src="~/Scripts/jquery-3.5.1.js"></script>*@
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+
+    <style>
+        /*eye icon on password field*/
+        .field-icon {
+            float: right;
+            margin-right: 8px;
+            margin-top: -33px;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .container {
+            padding-top: 50px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center">
+            <div class="col-lg-8 col-sm-12 my-auto">
+                <div class="sign_logo">
+                    <img src="~/Content/theme/img/logo.png">
+                </div>
+                <div class="sign_container">
+                    <div class="row">
+                        <div class="col-lg-12 pl-4 pr-4">
+                            <form id="myfrm">
+                                <div class="form-box">
+                                    <h1>Sign In</h1>
+
+                                    <div class="form-group">
+                                        <input id="email" value="@ViewBag.email" type="text" class="form-control" name="" required="" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="password" value="@ViewBag.password" type="password" class="form-control password" name="password" required="" placeholder="Password">
+                                        <span toggle="#password" class="fa fa-lg fa-eye field-icon toggle-password"></span>
+                                    </div>
+                                    <div class="separator"></div>
+                                    <div class="form-group">
+                                        <label id="LoginErrorMessage" style="color: red;"></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="check-container">
+                                            Remember me on this computer
+                                            <input id="ckRemember" type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="button-box mt-5">
+                                        @*onclick="javascript:dataAccess.loginService.login()"*@
+                                        <button id="btnSignIn" type="button" class="btn full-btn text-uppercase">Sign In</button>
+                                    </div>
+
+                                    <a href="~/User/ForgotPassword" class="forGot_link">Forgot Password?</a>
+                                </div>
+                            </form>
+
+
+                            <div class="loading">
+                                @*<img id="loading-image" src="~/Content/theme/img/preloader.gif" alt="Loading..." />*@
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    @*<script src="~/Content/theme/js/jquery.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+    <script src="~/Content/theme/js/sweetalert.min.js"></script>
+
+    <script src="~/Content/theme/js/parsley.min.js"></script>
+
+    <script src="~/Content/theme/js/data.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Content/theme/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/theme/js/adminlte.min.js"></script>
+
+
+    <script>
+
+        //$('#myfrm').parsley().validate();
+
+        $('#btnSignIn').click(function (e) {
+
+          //  debugger;
+            dataAccess.loginService.login();
+
+        });
+
+
+        //eye icon on password field
+        $(".toggle-password").click(function () {
+            debugger;
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+
+    </script>
+
+</body>
+</html>

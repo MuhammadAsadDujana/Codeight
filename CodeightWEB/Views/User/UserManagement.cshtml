@@ -1,0 +1,267 @@
+﻿@model System.Collections.Generic.IEnumerable<BOL.dbContext.tbl_Users>
+@using BOL.Helper
+
+@{
+    ViewBag.Title = "User Management";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Main content -->
+
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+        /*background-color: 003399;*/
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+
+
+
+<div class="content setTop-margin">
+    <div class="container-fluid px-4">
+        <div class="content-header">
+            <div class="input-group searchGroup col-md-4">
+
+            </div>
+            @*<a href="#" id="markVerified" class="btn white-btn">Mark Verified</a>*@
+        </div>
+        <div class="main_table">
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card p-3">
+                        <!-- /.card-header -->
+                        <div class="card-body physicians-table table-responsive p-0">
+                            <table id="table" class="table table-hover text-center">
+                                <thead>
+                                    <tr class="bg-grey">
+                                        @*<th>
+                                                <div class="list-checked">
+                                                    <label class="check-container">
+                                                        <input id="checkAll" type="checkbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </div>
+                                            </th>*@
+                                        <th>Picture</th>
+                                        <th>User name</th>
+                                        @*<th>Last Name</th>*@
+                                        <th>Date of birth</th>
+                                        <th>Address</th>
+                                        <th>Phone number</th>
+                                        <th>User status</th>
+                                        <th>Change status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        @*<td>
+            <div class="list-checked">
+                <label class="check-container">
+                    <input value="@item.UserId" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </td>*@
+                                        <td>
+                                            @if (!String.IsNullOrEmpty(item.ProfileImage))
+                                            {
+                                                <div class="user-block user-image">
+                                                    @*<img class="img-circle img-bordered-sm" src="@Url.Content(TripleDESCryptography.Decrypt(item.ProfileImage))" height="100" />*@
+                                                    <img class="img-circle img-bordered-sm" src="@Url.Content(item.ProfileImage)" height="100" />
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="user-block user-image">
+                                                    <img class="img-circle img-bordered-sm" src="~/Content/theme/img/profileeee.jpg" alt="User Image" />
+                                                </div>
+                                            }
+
+                                        </td>
+                                        <td>@item.FirstName @item.LastName</td>
+                                        @*<td>@item.LastName</td>*@
+                                        <td>@item.DateOfBirth.Value.ToString("dd MMM yyyy")</td>
+                                        <td>@item.Address</td>
+                                        <td>@item.PhoneNumber</td>
+                                        @if (item.UserStatus == 0)
+                                        {
+                                            <td>Unverifed</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Verified</td>
+                                        }
+                                        <td>
+
+                                            <label class="switch">
+                                                @if (item.UserStatus == 1)
+                                                {
+                                                    <input data-id="@item.UserId" class="chkitem" name="chkitem" id="cbxVerified" value="@item.UserId" type="checkbox" checked>
+                                                }
+                                                else
+                                                {
+                                                    <input data-id="@item.UserId" class="chkitem" name="chkitem" id="cbxVerified" value="@item.UserId" type="checkbox">
+                                                }
+                                                <span class="slider round"></span>
+                                            </label>
+
+                                        </td>
+                                        @*<td><a href="~/User/EditUser?userId=@item.UserId" class="view-btn"><i class="fas fa-edit"></i></a></td>*@
+                                        @*<td><a href="~/User/ViewUser?userId=@item.UserId" class="view-btn"><i class="fas fa-eye"></i></a></td>*@
+                                        <td><a href="javascript:dataAccess.userService.deleteUser('@item.UserId')" class="view-btn"><i class="fas fa-trash-alt"></i></a></td>
+                                        
+                                    </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+    </div><!-- /.container-fluid -->
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+
+ 
+
+
+    $('.chkitem').click(function () {
+
+        debugger;
+        //alert(2);
+        const previousCheckboxValue = this; // 
+        //var UserId = $(this).attr("data-id");
+
+        if ($(this).is(':checked')) {
+          
+          //  var remember = $('#cbxVerified').prop('checked') ? true : false;
+            var userStatus = 1;
+            var UserId = $(this).attr("data-id");
+        //    alert("is checked");
+
+            dataAccess.loginService.markVerified(UserId, userStatus, previousCheckboxValue);
+
+        } else {
+          
+         // var remember = $('#cbxVerified').prop('checked') ? true : false;
+            var userStatus = 0;
+            var UserId = $(this).attr("data-id");
+         //  alert("not checked");
+
+            dataAccess.loginService.markVerified(UserId, userStatus, previousCheckboxValue);
+        }
+
+
+        //get all checkbox values in an array
+        //var STRMS = [];
+        //$('input:checked').each(function () {
+        //    STRMS.push($(this).attr("value"));
+        //});
+
+        //alert(STRMS);
+
+    });
+
+        //$("#checkAll").change(function () {
+        //    $("input:checkbox").prop('checked', $(this).prop("checked"));
+        //});
+
+        //$('#markVerified').click(function (e) {
+        //    debugger;
+        //    //alert(1);
+
+        //    var arrayList = []
+        //    var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+
+        //    for (var i = 0; i < checkboxes.length; i++) {
+        //        arrayList.push(checkboxes[i].value)
+        //    }
+
+        //    //alert(arrayList);
+
+        //    dataAccess.loginService.markVerified(arrayList);
+        //});
+
+
+
+    $(document).ready(function () {
+
+        var table = $('#table').DataTable({
+            //"scrollY": "68vh",
+            //"scrollCollapse": false,
+            "searching": true,
+            //"paging": true,
+            autoWidth: true,
+            responsive: true
+        });
+    });
+
+</script>

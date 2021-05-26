@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Manage Radius";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid px-4">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- row -->
+                <div class="profile-form">
+
+
+                    <form id="myfrm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h3>Edit Radius</h3>
+
+                                </div>
+
+
+
+
+                                <div class="form-group">
+
+
+                                    @{
+                                        var radius = (ViewBag.LastRadiusValue as BOL.dbContext.tbl_ManageRadius);
+                                    }
+                                    @if (radius != null)
+                                    {
+                                        <label>Current radius is: <label>@radius.RadiusValue</label> KM</label>
+                                        <input id="txtPreviousId" type="hidden" value="@radius.RadiusId">
+                                    }
+                                    else
+                                    {
+                                        <label>No current radius found</label>
+                                        <input id="txtPreviousId" type="hidden" value="0">
+                                    }
+
+                                    <br />
+                                    <input id="txtManageRadius" type="tel" onkeypress="return isNumberKey(event)" maxlength="3" class="form-control password" name="txtManageRadius" required="" placeholder="Enter radius value">
+
+                                    @*<select name="ddlManageRadius" id="ddlManageRadius" class="form-control" required>
+
+                                            @{
+                                                //IEnumerable<BOL.dbContext.tbl_ManageRadius> lstManageRadius = ViewBag.ddlManageRadius;
+
+                                                if (ViewBag.ddlManageRadius != null)
+                                                {
+                                                    foreach (var item in ViewBag.ddlManageRadius)
+                                                    {
+                                                        if (item.IsSelected == true)
+                                                        {
+                                                            <option id="ddlPreviousValue" value="@item.RadiusId" selected="selected">@item.RadiusValue KM</option>
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.RadiusId">@item.RadiusValue KM</option>
+                                                        }
+
+                                                    }
+                                                }
+
+                                            }
+                                        </select>*@
+
+                                </div>
+                                <div class="buttons-group text-center mt-4">
+                                    <a href="~/Notification/PushNotifcation" class="btn mr-2">Cancel</a>
+                                    <button onclick="dataAccess.RadiusManagementService.editRadius()" type="button" class="btn flat-btn ml-2">Change</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+<!-- /.content-wrapper -->
+
+
+<script type="text/javascript">
+
+    //accept input only number with decimal
+    function isNumberKey(evt) {
+        debugger;
+        //var charCode = (evt.which) ? evt.which : evt.keyCode
+        //if (charCode > 31 && (charCode < 48 || charCode > 57))
+        //    return false;
+        //return true;
+
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+</script>

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "PushNotifcation";
+}
+
+
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid px-4">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- row -->
+                <div class="profile-form">
+                    <form id="myfrm">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>Heading</label>
+                                    <input id="txtTitle" required="required" type="text" placeholder="Notification Title" class="form-control" name="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Message</label>
+                                    <textarea id="txtMessage" required="required" placeholder="Type Message" rows="8" class="form-control"></textarea>
+                                </div>
+                                <div class="buttons-group text-center mt-4">
+                                    <a href="~/Session/ManageRadius" class="btn mr-2">Cancel</a>
+                                    <button type="button" id="submit" onclick="dataAccess.Notifications.sendNotification()" class="btn flat-btn ml-2">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+

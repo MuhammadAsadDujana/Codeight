@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+
+    <title>Confirmation</title>
+
+    <!-- Bootstrap -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="~/Content/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Content/theme/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <link href="~/Content/theme/build/css/custom2.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/Content/theme/build/js/custom.js"></script>
+</head>
+<body>
+    <div style="width: 500px; margin:200px auto 0;">
+        @*<div class="row">
+                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                    <h1 style="text-align:center;">Premier Transportation</h1>
+                </div>
+            </div>*@
+        <hr />
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <h2 style="text-align:center;">@ViewBag.Status</h2>
+        </div>
+    </div>
+</body>
+</html>
